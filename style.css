@@ -1,0 +1,400 @@
+/* ===== GENERAL SETUP ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    background-color: #f5f5f0;
+    color: #222;
+}
+
+/* ===== HEADER & NAVIGATION ===== */
+header {
+    background-color: #1a3a5c;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.logo {
+    color: #f0c040;
+    font-size: 1.4em;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 0.95em;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+nav a:hover, nav a.active {
+    background-color: #f0c040;
+    color: #1a3a5c;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: linear-gradient(135deg, #1a3a5c, #2e6da4);
+    color: white;
+}
+
+.hero h1 {
+    font-size: 2.4em;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+/* ===== SUBJECTS SECTION ===== */
+.subjects {
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.subjects h2 {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+    color: #1a3a5c;
+}
+
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 14px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.subject-card {
+    background: white;
+    border: 2px solid #1a3a5c;
+    border-radius: 8px;
+    padding: 14px 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #1a3a5c;
+}
+
+/* ===== FEATURES SECTION ===== */
+.features {
+    padding: 40px 30px;
+    background-color: #eaeae4;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+    color: #1a3a5c;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 10px;
+    padding: 24px 16px;
+    text-decoration: none;
+    color: #222;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.13);
+}
+
+.feature-card h3 {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: #1a3a5c;
+}
+
+.feature-card p {
+    font-size: 0.88em;
+    color: #555;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 24px;
+    background-color: #1a3a5c;
+    color: #aac4e0;
+    font-size: 0.9em;
+}
+
+/* ===== PAGE TITLES (for inner pages) ===== */
+.page-title {
+    background-color: #1a3a5c;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.page-title h1 {
+    font-size: 2em;
+}
+
+/* ===== SUBJECT FILTER BUTTONS ===== */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px 30px;
+    justify-content: center;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.filter-btn {
+    background: #f0f0f0;
+    border: 2px solid #1a3a5c;
+    color: #1a3a5c;
+    padding: 7px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: #1a3a5c;
+    color: white;
+}
+
+/* ===== MULTIPLE CHOICE ===== */
+.question-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.question-card {
+    background: white;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.question-card h3 {
+    font-size: 1em;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.question-card p {
+    font-size: 1.05em;
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.options label {
+    display: block;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.options label:hover {
+    border-color: #2e6da4;
+}
+
+.options input[type="radio"] {
+    margin-right: 10px;
+}
+
+.check-btn {
+    background: #1a3a5c;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    margin-top: 8px;
+}
+
+.check-btn:hover {
+    background: #2e6da4;
+}
+
+.result-msg {
+    margin-top: 12px;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.correct { color: green; }
+.incorrect { color: red; }
+
+/* ===== ESSAYS ===== */
+.essay-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.essay-card {
+    background: white;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.essay-card h3 {
+    color: #1a3a5c;
+    margin-bottom: 10px;
+}
+
+.essay-card p {
+    line-height: 1.7;
+    margin-bottom: 14px;
+    color: #444;
+}
+
+.essay-card textarea {
+    width: 100%;
+    height: 200px;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95em;
+    font-family: Georgia, serif;
+    resize: vertical;
+}
+
+.essay-card textarea:focus {
+    border-color: #2e6da4;
+    outline: none;
+}
+
+/* ===== FLASHCARDS ===== */
+.flashcard-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.flashcard {
+    background: white;
+    border-radius: 14px;
+    padding: 50px 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin-bottom: 20px;
+}
+
+.flashcard:hover {
+    transform: scale(1.02);
+}
+
+.flashcard p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #1a3a5c;
+}
+
+.card-controls {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.card-btn {
+    background: #1a3a5c;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+}
+
+.card-btn:hover {
+    background: #2e6da4;
+}
+
+.card-counter {
+    margin-top: 14px;
+    color: #888;
+    font-size: 0.9em;
+}
+
+/* ===== LAW UPDATES ===== */
+.updates-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.update-card {
+    background: white;
+    border-left: 5px solid #f0c040;
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.update-card h3 {
+    color: #1a3a5c;
+    margin-bottom: 6px;
+}
+
+.update-card .date {
+    font-size: 0.82em;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.update-card p {
+    line-height: 1.7;
+    color: #444;
+}
+
+.update-tag {
+    display: inline-block;
+    background: #1a3a5c;
+    color: white;
+    font-size: 0.75em;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
