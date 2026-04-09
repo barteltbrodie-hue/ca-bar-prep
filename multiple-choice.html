@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Choice — CA Bar Prep</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">⚖️ CA Bar Prep</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="multiple-choice.html" class="active">Multiple Choice</a>
+            <a href="essays.html">Essays</a>
+            <a href="flashcards.html">Flashcards</a>
+            <a href="law-updates.html">Law Updates</a>
+        </nav>
+    </header>
+
+    <!-- PAGE TITLE -->
+    <div class="page-title">
+        <h1>✅ Multiple Choice Practice</h1>
+        <p>Select a subject to filter questions</p>
+    </div>
+
+    <!-- SUBJECT FILTER BUTTONS -->
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterQuestions('all')">All Subjects</button>
+        <button class="filter-btn" onclick="filterQuestions('civil-procedure')">Civil Procedure</button>
+        <button class="filter-btn" onclick="filterQuestions('contracts')">Contracts</button>
+        <button class="filter-btn" onclick="filterQuestions('torts')">Torts</button>
+        <button class="filter-btn" onclick="filterQuestions('criminal')">Criminal Law</button>
+        <button class="filter-btn" onclick="filterQuestions('evidence')">Evidence</button>
+        <button class="filter-btn" onclick="filterQuestions('constitutional')">Constitutional Law</button>
+        <button class="filter-btn" onclick="filterQuestions('real-property')">Real Property</button>
+        <button class="filter-btn" onclick="filterQuestions('business')">Business Associations</button>
+        <button class="filter-btn" onclick="filterQuestions('wills')">Wills & Trusts</button>
+        <button class="filter-btn" onclick="filterQuestions('professional')">Professional Responsibility</button>
+        <button class="filter-btn" onclick="filterQuestions('community')">Community Property</button>
+        <button class="filter-btn" onclick="filterQuestions('remedies')">Remedies</button>
+    </div>
+
+    <!-- QUESTIONS AREA -->
+    <div class="question-container" id="questions-area"></div>
+
+    <script src="questions.js"></script>
+    <script>
+        function renderQuestions(filter) {
+            const area = document.getElementById('questions-area');
+            const filtered = filter === 'all'
+                ? questions
+                : questions.filter(q => q.subject === filter);
+
+            if (filtered.length === 0) {
+                area.innerHTML = '<p style="text-align:center;padding:40px;color:#888;">No questions found for this subject yet.</p>';
+                return;
+            }
+
+            area.innerHTML = filtered.map((q, i) => `
+                <div class="question-card" data-subject="${q.subject}">
+                    <h3>${q.subjectLabel} — Question ${i + 1}</h3>
+                    <p>${q.question}</p>
+                    <div class="options">
+                        ${q.options.map((opt, j) => `
+                            <label>
+                                <input type="radio" name="q${i}" value="${j}">
+                                ${opt}
+                            </label>
+                        `).join('')}
+                    </div>
+                    <button class="check-btn" onclick="checkAnswer(${i}, ${q.correct}, this)">Check Answer</button>
+                    <div class="result-msg" id="result-${i}"></div>
+                    <div class="explanation" id="explanation-${i}" style="display:none; margin-top:10px; padding:10px; background:#f0f7ff; border-radius:6px; color:#333;">${q.explanation}</div>
+                </div>
+            `).join('');
+        }
+
+        function checkAnswer(index, correct, btn) {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            const resultDiv = document.getElementById(`result-${index}`);
+            const explanationDiv = document.getElementById(`explanation-${index}`);
+
+            if (!selected) {
+                resultDiv.textContent = 'Please select an answer first.';
+                resultDiv.className = 'result-msg';
+                return;
+            }
+
+            if (parseInt(selected.value) === correct) {
+                resultDiv.textContent = '✅ Correct!';
+                resultDiv.className = 'result-msg correct';
+            } else {
+                resultDiv.textContent = '❌ Incorrect. See explanation below.';
+                resultDiv.className = 'result-msg incorrect';
+            }
+
+            explanationDiv.style.display = 'block';
+            btn.disabled = true;
+        }
+
+        function filterQuestions(subject) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderQuestions(subject);
+        }
+
+        renderQuestions('all');
+    </script>
+
+</body>
+</html>
