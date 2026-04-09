@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essay Practice — CA Bar Prep</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">⚖️ CA Bar Prep</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="multiple-choice.html">Multiple Choice</a>
+            <a href="essays.html" class="active">Essays</a>
+            <a href="flashcards.html">Flashcards</a>
+            <a href="law-updates.html">Law Updates</a>
+        </nav>
+    </header>
+
+    <!-- PAGE TITLE -->
+    <div class="page-title">
+        <h1>✍️ Essay Practice</h1>
+        <p>Select a subject to filter essay prompts</p>
+    </div>
+
+    <!-- SUBJECT FILTER BUTTONS -->
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterEssays('all')">All Subjects</button>
+        <button class="filter-btn" onclick="filterEssays('civil-procedure')">Civil Procedure</button>
+        <button class="filter-btn" onclick="filterEssays('contracts')">Contracts</button>
+        <button class="filter-btn" onclick="filterEssays('torts')">Torts</button>
+        <button class="filter-btn" onclick="filterEssays('criminal')">Criminal Law</button>
+        <button class="filter-btn" onclick="filterEssays('evidence')">Evidence</button>
+        <button class="filter-btn" onclick="filterEssays('constitutional')">Constitutional Law</button>
+        <button class="filter-btn" onclick="filterEssays('real-property')">Real Property</button>
+        <button class="filter-btn" onclick="filterEssays('business')">Business Associations</button>
+        <button class="filter-btn" onclick="filterEssays('wills')">Wills & Trusts</button>
+        <button class="filter-btn" onclick="filterEssays('professional')">Professional Responsibility</button>
+        <button class="filter-btn" onclick="filterEssays('community')">Community Property</button>
+        <button class="filter-btn" onclick="filterEssays('remedies')">Remedies</button>
+    </div>
+
+    <!-- ESSAYS AREA -->
+    <div class="essay-container" id="essays-area"></div>
+
+    <script src="essays.js"></script>
+    <script>
+        function renderEssays(filter) {
+            const area = document.getElementById('essays-area');
+            const filtered = filter === 'all'
+                ? essays
+                : essays.filter(e => e.subject === filter);
+
+            if (filtered.length === 0) {
+                area.innerHTML = '<p style="text-align:center;padding:40px;color:#888;">No essays found for this subject yet.</p>';
+                return;
+            }
+
+            area.innerHTML = filtered.map((e, i) => `
+                <div class="essay-card">
+                    <h3>${e.subjectLabel} — ${e.title}</h3>
+                    <p><strong>Instructions:</strong> ${e.instructions}</p>
+                    <p><strong>Prompt:</strong> ${e.prompt}</p>
+                    <p><strong>Issues to Address:</strong> ${e.issues}</p>
+                    <textarea placeholder="Write your essay answer here..."></textarea>
+                    <div style="margin-top:10px;">
+                        <button class="check-btn" onclick="toggleSampleAnswer(${i})">Show Sample Answer Outline</button>
+                        <div id="sample-${i}" style="display:none; margin-top:12px; padding:14px; background:#f0f7ff; border-radius:6px; line-height:1.7; color:#333;">
+                            <strong>Sample Answer Outline:</strong><br>${e.sampleAnswer}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleSampleAnswer(index) {
+            const div = document.getElementById(`sample-${index}`);
+            div.style.display = div.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function filterEssays(subject) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderEssays(subject);
+        }
+
+        renderEssays('all');
+    </script>
+
+</body>
+</html>
